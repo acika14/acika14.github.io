@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html>
+<head>
+ <meta charset="UTF-8" />
+<title>Aleksandar Vranic</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="navbar">
+    <img class="logo" src="Logoav.png">
+	<button class="link">
+	 My Projects
+	</button>
+	<button class="link">
+	About Me
+	</button>
+	<button class="link">
+	Contact Me
+	</button>
+  </div>
+ <h1 class="ttl">
+       Hey, I'm Aleksandar 👋<br />I like to <span id="typewriter"></span
+      ><span id="cursor">|</span>
+ </h1>
+ <img class="certificate" src="certificate.png">
+ <script>
+      function sleep(ms) {
+        return new Promise((resolve) => setTimeout(resolve, ms));
+      }
+
+      const phrases = ["code", "play games", "watch movies"];
+      const el = document.getElementById("typewriter");
+
+      let sleepTime = 100;
+
+      let curPhraseIndex = 0;
+
+      const writeLoop = async () => {
+        while (true) {
+          let curWord = phrases[curPhraseIndex];
+
+          for (let i = 0; i < curWord.length; i++) {
+            el.innerText = curWord.substring(0, i + 1);
+            await sleep(sleepTime);
+          }
+
+          await sleep(sleepTime * 10);
+
+          for (let i = curWord.length; i > 0; i--) {
+            el.innerText = curWord.substring(0, i - 1);
+            await sleep(sleepTime);
+          }
+
+          await sleep(sleepTime * 5);
+
+          if (curPhraseIndex === phrases.length - 1) {
+            curPhraseIndex = 0;
+          } else {
+            curPhraseIndex++;
+          }
+        }
+      };
+
+      writeLoop();
+    </script>
+</body>
+</html>
